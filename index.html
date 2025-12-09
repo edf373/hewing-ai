@@ -124,6 +124,53 @@
             .services {
                 background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 42, 0.8) 100%);
             }
+
+            /* Demos Section */
+            .demos {
+                background: rgba(255, 69, 0, 0.05);
+            }
+
+            .demo-card {
+                text-decoration: none;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .demo-card::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 140, 0, 0.1));
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .demo-card:hover::after {
+                opacity: 1;
+            }
+
+            .demo-button {
+                display: inline-block;
+                margin-top: 20px;
+                padding: 12px 25px;
+                background: linear-gradient(135deg, #ff4500, #ff8c00);
+                color: #ffffff;
+                border-radius: 50px;
+                font-weight: bold;
+                font-size: 14px;
+                transition: transform 0.3s, box-shadow 0.3s;
+                position: relative;
+                z-index: 1;
+            }
+
+            .demo-card:hover .demo-button {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(255, 69, 0, 0.5);
+            }
             section {
                 padding: 80px 0;
             }
@@ -658,7 +705,7 @@
                     font-size: 16px;
                 }
 
-               nav .logo {
+                nav .logo {
                     font-size: 24px;
                 }
 
@@ -700,6 +747,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#why-us">Why Us</a></li>
                     <li><a href="#why-ai">Why AI</a></li>
+                    <li><a href="#demos">Demos</a></li>
                     <li><a href="#research">Research</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#pricing">Pricing</a></li>
@@ -1162,6 +1210,85 @@
 
         <!-- Portfolio Section -->
         <section class="portfolio" id="portfolio">
+
+        <!-- Demos Section -->
+        <section class="demos" id="demos">
+            <div class="container">
+                <h2 class="section-title">Interactive Demos</h2>
+                <p class="section-subtitle">
+                    Explore our tailored presentations for different industries
+                </p>
+
+                <div class="features-grid">
+                    <a href="content-creators.html" target="_blank" class="feature-card demo-card">
+                        <h3>Content Creators</h3>
+                        <p>
+                            For YouTubers, streamers, and influencers looking to grow their audience and automate their workflow.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="real-estate.html" target="_blank" class="feature-card demo-card">
+                        <h3>Real Estate Agents</h3>
+                        <p>
+                            For realtors who want to close more deals, capture more leads, and dominate their local market.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="restaurants.html" target="_blank" class="feature-card demo-card">
+                        <h3>Cafes & Restaurants</h3>
+                        <p>
+                            For food businesses looking to fill more tables, manage reviews, and build a loyal customer base.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="ecommerce.html" target="_blank" class="feature-card demo-card">
+                        <h3>E-commerce Stores</h3>
+                        <p>
+                            For online stores ready to scale sales, automate operations, and increase conversion rates.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="small-business.html" target="_blank" class="feature-card demo-card">
+                        <h3>Small Businesses</h3>
+                        <p>
+                            For local businesses wanting to compete with bigger players through smart automation and marketing.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="coaches.html" target="_blank" class="feature-card demo-card">
+                        <h3>Coaches & Consultants</h3>
+                        <p>
+                            For coaches looking to scale their practice, qualify leads, and focus on high-value clients.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="healthcare.html" target="_blank" class="feature-card demo-card">
+                        <h3>Healthcare Professionals</h3>
+                        <p>
+                            For doctors, dentists, and clinics wanting to attract more patients and streamline operations.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+
+                    <a href="fitness.html" target="_blank" class="feature-card demo-card">
+                        <h3>Fitness & Wellness</h3>
+                        <p>
+                            For gyms, studios, and trainers ready to fill classes, retain members, and grow revenue.
+                        </p>
+                        <span class="demo-button">View Demo →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio" id="portfolio">
             <div class="container">
                 <h2 class="section-title">About Me</h2>
 
@@ -1330,10 +1457,10 @@
                             <select id="package" name="package" required>
                                 <option value="">Select a package</option>
                                 <option value="starter">
-                                    Starter - from £2,500/month
+                                    Starter - £2,500/month
                                 </option>
                                 <option value="professional">
-                                    Professional - from £5,500/month
+                                    Professional - £5,500/month
                                 </option>
                                 <option value="enterprise">
                                     Enterprise - Custom Pricing
@@ -1381,7 +1508,7 @@
         <!-- Footer -->
         <footer>
             <div class="container">
-                <p>&copy; 2025 Hewing AI. All rights reserved.</p>
+                <p>&copy; 2024 Hewing AI. All rights reserved.</p>
             </div>
         </footer>
         <script>
