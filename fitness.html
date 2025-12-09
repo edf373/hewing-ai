@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hewing AI - Fitness & Wellness</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%); color: #ffffff; overflow: hidden; height: 100vh;}
+        .slideshow-container {position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;}
+        .slide {display: none; width: 100%; height: 100%; padding: 60px; text-align: center; animation: fadeIn 0.5s;}
+        .slide.active {display: flex; flex-direction: column; justify-content: center; align-items: center;}
+        @keyframes fadeIn {from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);}}
+        h1 {font-size: 56px; background: linear-gradient(135deg, #ff4500, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px;}
+        h2 {font-size: 42px; color: #ff6347; margin-bottom: 30px;}
+        h3 {font-size: 28px; color: #ff8c00; margin-bottom: 20px;}
+        p {font-size: 20px; color: #cccccc; max-width: 900px; line-height: 1.8; margin-bottom: 15px;}
+        ul {list-style: none; text-align: left; max-width: 800px; margin: 20px auto;}
+        li {font-size: 18px; color: #cccccc; padding: 12px 0; padding-left: 30px; position: relative;}
+        li:before {content: "→"; position: absolute; left: 0; color: #ff6347; font-weight: bold;}
+        .highlight {color: #ff6347; font-weight: bold;}
+        .result-box {background: rgba(255, 69, 0, 0.1); padding: 20px 40px; border-radius: 15px; border-left: 4px solid #ff4500; margin-top: 30px; max-width: 800px;}
+        .pricing-container {display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 30px;}
+        .price-card {background: rgba(255, 69, 0, 0.1); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 69, 0, 0.3); min-width: 250px;}
+        .price-card.popular {border-color: #ff6347; transform: scale(1.05);}
+        .price {font-size: 36px; color: #ff6347; font-weight: bold; margin: 15px 0;}
+        .controls {position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; align-items: center;}
+        button {background: linear-gradient(135deg, #ff4500, #ff8c00); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 16px; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 5px 20px rgba(255, 69, 0, 0.3);}
+        button:hover {transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 69, 0, 0.5);}
+        button:disabled {opacity: 0.5; cursor: not-allowed;}
+        .slide-counter {color: #cccccc; font-size: 18px;}
+        .contact-info {margin-top: 30px; font-size: 18px;}
+        .contact-info a {color: #ff6347; text-decoration: none;}
+        @media (max-width: 768px) {.slide {padding: 40px 20px;} h1 {font-size: 36px;} h2 {font-size: 28px;} h3 {font-size: 22px;} p, li {font-size: 16px;} .pricing-container {flex-direction: column; align-items: center;} .price-card {min-width: 200px;}}
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide active">
+            <h1>Build Your Fitness Empire</h1>
+            <h2>Hewing AI for Fitness & Wellness</h2>
+            <p>Your Complete Growth Partner</p>
+            <p style="margin-top: 40px; font-size: 24px;">Fill your classes, grow your membership, and scale your fitness business with AI-powered marketing.</p>
+        </div>
+        <div class="slide">
+            <h2>AI Chatbots for Fitness</h2>
+            <h3>Never Miss A Member Inquiry</h3>
+            <ul>
+                <li><span class="highlight">24/7 Membership Inquiries</span> - Answer questions about classes, pricing, hours</li>
+                <li><span class="highlight">Class Booking</span> - Members book and manage their schedules</li>
+                <li><span class="highlight">Trial Session Signup</span> - Convert website visitors to trial members</li>
+                <li><span class="highlight">PT Lead Generation</span> - Capture personal training inquiries automatically</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> More members, fuller classes, higher conversion</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Workflow Automation</h2>
+            <h3>Run Your Business Like A Pro</h3>
+            <ul>
+                <li><span class="highlight">Member Onboarding</span> - Automated welcome sequences and goal setting</li>
+                <li><span class="highlight">Class Reminders</span> - Reduce no-shows with automated notifications</li>
+                <li><span class="highlight">Retention Campaigns</span> - Re-engage inactive members automatically</li>
+                <li><span class="highlight">Payment Processing</span> - Automated billing and renewal reminders</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Higher retention, lower churn, predictable revenue</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>AI Content Tools</h2>
+            <h3>Inspire & Motivate Your Community</h3>
+            <ul>
+                <li><span class="highlight">Social Media Content</span> - Daily workout tips, transformation posts, motivation</li>
+                <li><span class="highlight">Email Campaigns</span> - Nutrition tips, class schedules, success stories</li>
+                <li><span class="highlight">Blog Content</span> - Fitness guides, workout routines, wellness advice</li>
+                <li><span class="highlight">Challenge Promotions</span> - Marketing for 30-day challenges and events</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Engaged community that stays motivated and loyal</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>SEO & Local Search</h2>
+            <h3>Be The Go-To Gym In Your Area</h3>
+            <ul>
+                <li><span class="highlight">Local SEO</span> - Rank for "[Your City] gym" and fitness searches</li>
+                <li><span class="highlight">Google Business Optimization</span> - Perfect profile with photos, reviews, posts</li>
+                <li><span class="highlight">Class-Specific Pages</span> - Rank for yoga, CrossFit, HIIT, etc.</li>
+                <li><span class="highlight">Review Generation</span> - Automated requests from happy members</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Constant flow of new member leads from search</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Digital Advertising</h2>
+            <h3>Fill Your Gym With Ideal Members</h3>
+            <ul>
+                <li><span class="highlight">Facebook & Instagram Ads</span> - Target fitness enthusiasts in your area</li>
+                <li><span class="highlight">TikTok Campaigns</span> - Viral fitness content that drives signups</li>
+                <li><span class="highlight">Trial Offer Funnels</span> - Convert ad viewers to trial members</li>
+                <li><span class="highlight">Transformation Campaigns</span> - Showcase member success stories</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Predictable new member acquisition every month</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Professional Services Bundle</h2>
+            <h3>Complete Fitness Brand</h3>
+            <ul>
+                <li><span class="highlight">Web Design</span> - High-converting gym website with booking</li>
+                <li><span class="highlight">Video Production</span> - Class demos, trainer intros, facility tours</li>
+                <li><span class="highlight">Social Media Management</span> - Daily motivation and community building</li>
+                <li><span class="highlight">Brand Identity</span> - Logo, colors, messaging that attracts your ideal member</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> A premium fitness brand that stands out</p>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Investment in Your Growth</h2>
+            <div class="pricing-container">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">£2,500/mo</div>
+                    <p>1 core service + support</p>
+                    <p style="font-size: 14px; margin-top: 10px;">Perfect for boutique studios</p>
+                </div>
+                <div class="price-card popular">
+                    <h3>Professional</h3>
+                    <div class="price">£5,500/mo</div>
+                    <p>3 services + advanced features</p>
+                    <p style="font-size: 14px; margin-top: 10px; color: #ff6347;">⭐ MOST POPULAR</p>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <p>Full-service solution</p>
+                    <p style="font-size: 14px; margin-top: 10px;">For multi-location gyms</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p><strong>Ready to Transform Your Fitness Business?</strong></p>
+                <p>Email: <a href="mailto:snhewing@hewingai.com">snhewing@hewingai.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p>TikTok: <a href="https://tiktok.com/@hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p style="margin-top: 20px; font-size: 24px; color: #ff6347;"><strong>Let's build your fitness empire together.</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span class="slide-counter"><span id="currentSlide">1</span> / 8</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        function showSlide(n) {
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+            else currentSlide = n;
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+        function changeSlide(direction) {showSlide(currentSlide + direction);}
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+        showSlide(0);
+    </script>
+</body>
+</html>

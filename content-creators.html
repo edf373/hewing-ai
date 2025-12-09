@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hewing AI - Content Creators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 56px;
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 42px;
+            color: #ff6347;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #cccccc;
+            max-width: 900px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        li {
+            font-size: 18px;
+            color: #cccccc;
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ff6347;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #ff6347;
+            font-weight: bold;
+        }
+
+        .result-box {
+            background: rgba(255, 69, 0, 0.1);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4500;
+            margin-top: 30px;
+            max-width: 800px;
+        }
+
+        .pricing-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .price-card {
+            background: rgba(255, 69, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 69, 0, 0.3);
+            min-width: 250px;
+        }
+
+        .price-card.popular {
+            border-color: #ff6347;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 36px;
+            color: #ff6347;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.5);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            color: #cccccc;
+            font-size: 18px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        .contact-info a {
+            color: #ff6347;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            p, li {
+                font-size: 16px;
+            }
+
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-card {
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <h1>Transform Your Content Creation Journey</h1>
+            <h2>Hewing AI</h2>
+            <p>Your Complete Digital Growth Partner</p>
+            <p style="margin-top: 40px; font-size: 24px;">From YouTube to TikTok, we help creators like you grow faster, create better, and earn more.</p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h2>AI Chatbots for Creators</h2>
+            <h3>Never Miss a Fan Interaction Again</h3>
+            <ul>
+                <li><span class="highlight">24/7 Community Management</span> - AI responds to DMs and comments while you sleep</li>
+                <li><span class="highlight">Custom Knowledge Base</span> - Trained on your content style and brand voice</li>
+                <li><span class="highlight">Multi-Platform Integration</span> - Works across YouTube, Instagram, TikTok, Discord</li>
+                <li><span class="highlight">Lead Generation</span> - Automatically capture sponsor and collaboration inquiries</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> More engagement, less burnout</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h2>Workflow Automation</h2>
+            <h3>Automate Your Backend, Focus on Creating</h3>
+            <ul>
+                <li><span class="highlight">Email Automation</span> - Newsletter campaigns run on autopilot</li>
+                <li><span class="highlight">Data Processing</span> - Auto-organize analytics, sponsorship deals, content schedules</li>
+                <li><span class="highlight">CRM Integration</span> - Manage sponsors, collaborators, and partnerships effortlessly</li>
+                <li><span class="highlight">Report Generation</span> - Weekly performance reports delivered automatically</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Save 10+ hours per week on admin tasks</p>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h2>AI Content Tools</h2>
+            <h3>Create Smarter, Not Harder</h3>
+            <ul>
+                <li><span class="highlight">Content Generation</span> - AI-powered video descriptions, captions, scripts</li>
+                <li><span class="highlight">Data Analysis</span> - Deep dive into what content performs best</li>
+                <li><span class="highlight">SEO Optimization</span> - Titles and tags that get you discovered</li>
+                <li><span class="highlight">Social Media Management</span> - Cross-platform posting, scheduling, analytics</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> More views, better engagement, faster growth</p>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h2>SEO & Local Search</h2>
+            <h3>Get Discovered By Your Ideal Audience</h3>
+            <ul>
+                <li><span class="highlight">Local SEO Optimization</span> - Dominate search in your niche/location</li>
+                <li><span class="highlight">Keyword Research & Strategy</span> - Find what your audience is searching for</li>
+                <li><span class="highlight">On-Page Optimization</span> - Make your content search-engine friendly</li>
+                <li><span class="highlight">Google Business Profile Setup</span> - For creators offering services/products</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Organic traffic that converts to subscribers</p>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h2>Digital Advertising</h2>
+            <h3>Scale Your Channel With Paid Growth</h3>
+            <ul>
+                <li><span class="highlight">Facebook & Instagram Ads</span> - Target your perfect audience</li>
+                <li><span class="highlight">TikTok Advertising</span> - Viral growth campaigns</li>
+                <li><span class="highlight">Campaign Strategy & Optimization</span> - Maximum ROI on ad spend</li>
+                <li><span class="highlight">Ad Creative & Copywriting</span> - Thumb-stopping content that converts</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Predictable, scalable growth</p>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <h2>Professional Services Bundle</h2>
+            <h3>The Complete Creator Package</h3>
+            <ul>
+                <li><span class="highlight">Web Design</span> - Portfolio sites, merch stores, landing pages</li>
+                <li><span class="highlight">Video Editing</span> - Professional edits for YouTube, TikTok, Instagram</li>
+                <li><span class="highlight">Social Media Management</span> - Daily posting, community engagement, growth</li>
+                <li><span class="highlight">Content Creation</span> - Blog posts, graphics, email campaigns, sales funnels</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> A complete content empire, managed professionally</p>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <h2>Investment in Your Growth</h2>
+            <div class="pricing-container">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">£2,500/mo</div>
+                    <p>1 core service + support</p>
+                    <p style="font-size: 14px; margin-top: 10px;">Perfect for emerging creators</p>
+                </div>
+                <div class="price-card popular">
+                    <h3>Professional</h3>
+                    <div class="price">£5,500/mo</div>
+                    <p>3 services + advanced features</p>
+                    <p style="font-size: 14px; margin-top: 10px; color: #ff6347;">⭐ MOST POPULAR</p>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <p>Full-service solution</p>
+                    <p style="font-size: 14px; margin-top: 10px;">For top-tier creators</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p><strong>Ready to Transform Your Channel?</strong></p>
+                <p>Email: <a href="mailto:snhewing@hewingai.com">snhewing@hewingai.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p>TikTok: <a href="https://tiktok.com/@hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p style="margin-top: 20px; font-size: 24px; color: #ff6347;"><strong>Let's build your creator empire together.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span class="slide-counter"><span id="currentSlide">1</span> / 8</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+            else currentSlide = n;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

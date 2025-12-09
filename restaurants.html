@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hewing AI - Cafes & Restaurants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 56px;
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 42px;
+            color: #ff6347;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #cccccc;
+            max-width: 900px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        li {
+            font-size: 18px;
+            color: #cccccc;
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ff6347;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #ff6347;
+            font-weight: bold;
+        }
+
+        .result-box {
+            background: rgba(255, 69, 0, 0.1);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4500;
+            margin-top: 30px;
+            max-width: 800px;
+        }
+
+        .pricing-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .price-card {
+            background: rgba(255, 69, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 69, 0, 0.3);
+            min-width: 250px;
+        }
+
+        .price-card.popular {
+            border-color: #ff6347;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 36px;
+            color: #ff6347;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.5);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            color: #cccccc;
+            font-size: 18px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        .contact-info a {
+            color: #ff6347;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            p, li {
+                font-size: 16px;
+            }
+
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-card {
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <h1>Fill More Tables, Build Your Brand</h1>
+            <h2>Hewing AI for Restaurants & Cafes</h2>
+            <p>Your Complete Digital Marketing Partner</p>
+            <p style="margin-top: 40px; font-size: 24px;">Attract more customers, manage your online presence, and grow your restaurant—all on autopilot.</p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h2>AI Chatbots for Restaurants</h2>
+            <h3>Answer Questions & Take Reservations 24/7</h3>
+            <ul>
+                <li><span class="highlight">Instant Responses</span> - Answer menu, hours, and location questions instantly</li>
+                <li><span class="highlight">Reservation Management</span> - Take bookings via website, Facebook, Instagram</li>
+                <li><span class="highlight">Order Support</span> - Help with online ordering and delivery questions</li>
+                <li><span class="highlight">Event Inquiries</span> - Capture catering and private event requests</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Never miss a reservation or catering opportunity</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h2>Workflow Automation</h2>
+            <h3>Run Your Restaurant Smarter</h3>
+            <ul>
+                <li><span class="highlight">Email Marketing</span> - Automated campaigns for specials, events, holidays</li>
+                <li><span class="highlight">Review Management</span> - Monitor and respond to reviews automatically</li>
+                <li><span class="highlight">Loyalty Programs</span> - Automated customer rewards and birthday offers</li>
+                <li><span class="highlight">Inventory Alerts</span> - Get notified when supplies run low</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> More repeat customers, less manual work</p>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h2>AI Content Tools</h2>
+            <h3>Mouth-Watering Marketing</h3>
+            <ul>
+                <li><span class="highlight">Menu Descriptions</span> - AI-crafted descriptions that make dishes irresistible</li>
+                <li><span class="highlight">Social Media Captions</span> - Engaging posts for every dish and special</li>
+                <li><span class="highlight">Blog Content</span> - Recipes, chef stories, local food culture articles</li>
+                <li><span class="highlight">Email Campaigns</span> - Weekly specials and event announcements</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Professional marketing without a marketing team</p>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h2>SEO & Local Search</h2>
+            <h3>Show Up When Hungry People Search</h3>
+            <ul>
+                <li><span class="highlight">Local SEO</span> - Rank for "[Your City] restaurants" and cuisine searches</li>
+                <li><span class="highlight">Google Business Optimization</span> - Perfect profile with photos, menu, reviews</li>
+                <li><span class="highlight">Review Generation</span> - System to get more 5-star reviews</li>
+                <li><span class="highlight">Map Pack Domination</span> - Show up in the Google Maps 3-pack</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Steady stream of new customers finding you online</p>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h2>Digital Advertising</h2>
+            <h3>Target Foodies in Your Area</h3>
+            <ul>
+                <li><span class="highlight">Facebook & Instagram Ads</span> - Target locals who love your cuisine type</li>
+                <li><span class="highlight">TikTok Campaigns</span> - Viral food content that brings in crowds</li>
+                <li><span class="highlight">Event Promotion</span> - Fill seats for special events and theme nights</li>
+                <li><span class="highlight">Retargeting</span> - Bring back website visitors with irresistible offers</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> Predictable foot traffic every week</p>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <h2>Professional Services Bundle</h2>
+            <h3>The Complete Restaurant Marketing Package</h3>
+            <ul>
+                <li><span class="highlight">Web Design</span> - Beautiful website with online ordering integration</li>
+                <li><span class="highlight">Food Photography & Video</span> - Stunning visuals that drive sales</li>
+                <li><span class="highlight">Social Media Management</span> - Daily posts, stories, and engagement</li>
+                <li><span class="highlight">Menu Design</span> - Professional digital and print menus</li>
+            </ul>
+            <div class="result-box">
+                <p><strong>Result:</strong> A restaurant brand that stands out</p>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <h2>Investment in Your Success</h2>
+            <div class="pricing-container">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">£2,500/mo</div>
+                    <p>1 core service + support</p>
+                    <p style="font-size: 14px; margin-top: 10px;">Perfect for single locations</p>
+                </div>
+                <div class="price-card popular">
+                    <h3>Professional</h3>
+                    <div class="price">£5,500/mo</div>
+                    <p>3 services + advanced features</p>
+                    <p style="font-size: 14px; margin-top: 10px; color: #ff6347;">⭐ MOST POPULAR</p>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <p>Full-service solution</p>
+                    <p style="font-size: 14px; margin-top: 10px;">For restaurant groups</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p><strong>Ready to Fill More Tables?</strong></p>
+                <p>Email: <a href="mailto:snhewing@hewingai.com">snhewing@hewingai.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p>TikTok: <a href="https://tiktok.com/@hewing.ai" target="_blank">@hewing.ai</a></p>
+                <p style="margin-top: 20px; font-size: 24px; color: #ff6347;"><strong>Let's grow your restaurant together.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span class="slide-counter"><span id="currentSlide">1</span> / 8</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+            else currentSlide = n;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
