@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+            name="description"
+            content="Hewing AI installs automation that replies instantly, qualifies leads, and follows up — so you stop losing enquiries."
+        />
+        <meta
+            name="keywords"
+            content="AI automation, enquiry handling, follow up automation, lead qualification"
+        />
+
+        <title>Hewing AI</title>
+
+        <script>
+            try {
+                if (localStorage.getItem("theme") === "dark") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            } catch (e) {}
+        </script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --bg: #f7f7fb;
+                --bg2: #ffffff;
+                --surface: rgba(255, 255, 255, 0.78);
+                --surface-solid: #ffffff;
+                --text: #121316;
+                --muted: #5b616a;
+                --border: rgba(16, 24, 40, 0.12);
+                --accent1: #ff4500;
+                --accent2: #ff8c00;
+                --accentSoft: rgba(255, 69, 0, 0.08);
+                --shadow: 0 10px 35px rgba(16, 24, 40, 0.1);
+                --shadow2: 0 20px 60px rgba(16, 24, 40, 0.12);
+                --focus: rgba(255, 69, 0, 0.25);
+            }
+
+            [data-theme="dark"] {
+                --bg: #101013;
+                --bg2: #141418;
+                --surface: rgba(20, 20, 20, 0.76);
+                --surface-solid: #141418;
+                --text: #ffffff;
+                --muted: #c9c9d2;
+                --border: rgba(255, 69, 0, 0.22);
+                --accentSoft: rgba(255, 69, 0, 0.06);
+                --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+                --shadow2: 0 20px 60px rgba(0, 0, 0, 0.45);
+                --focus: rgba(255, 69, 0, 0.3);
+            }
+
+            body {
+                font-family:
+                    "JetBrains Mono", "Fira Code", "Consolas", monospace;
+                background:
+                    radial-gradient(
+                        1200px 800px at 20% 0%,
+                        rgba(255, 140, 0, 0.18),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        900px 700px at 90% 10%,
+                        rgba(255, 69, 0, 0.14),
+                        transparent 55%
+                    ),
+                    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 70%);
+                color: var(--text);
+                line-height: 1.6;
+                scroll-behavior: smooth;
+            }
+
+            .container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            nav {
+                background: var(--surface);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+            nav .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 14px 0;
+                gap: 12px;
+            }
+            .logo {
+                font-size: 24px;
+                font-weight: 900;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+            nav ul {
+                display: flex;
+                gap: 18px;
+                list-style: none;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                color: var(--muted);
+                text-decoration: none;
+                font-size: 13px;
+            }
+            nav a:hover {
+                color: var(--accent1);
+            }
+
+            .theme-toggle {
+                border: 1px solid var(--border);
+                background: var(--surface);
+                padding: 8px 12px;
+                border-radius: 999px;
+                cursor: pointer;
+                font-size: 12px;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                box-shadow: var(--shadow);
+            }
+            .theme-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+            }
+
+            .hero {
+                padding: 110px 0 70px;
+                text-align: center;
+            }
+            .pill {
+                display: inline-block;
+                padding: 8px 14px;
+                border-radius: 999px;
+                border: 1px solid var(--border);
+                background: var(--surface);
+                font-size: 12px;
+                color: var(--muted);
+                margin-bottom: 18px;
+                box-shadow: var(--shadow);
+            }
+            .hero h1 {
+                font-size: 58px;
+                margin-bottom: 14px;
+                letter-spacing: -0.8px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hero p {
+                font-size: 18px;
+                color: var(--muted);
+                max-width: 900px;
+                margin: 0 auto 26px;
+            }
+
+            .cta-row {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-top: 10px;
+            }
+            .cta-button {
+                padding: 16px 38px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+                color: #fff;
+                border-radius: 999px;
+                text-decoration: none;
+                font-weight: 900;
+                display: inline-block;
+                box-shadow: 0 12px 30px rgba(255, 69, 0, 0.25);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+            .cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 18px 44px rgba(255, 69, 0, 0.28);
+            }
+
+            .ghost-button {
+                padding: 14px 26px;
+                border: 1px solid var(--border);
+                background: var(--surface);
+                color: var(--text);
+                border-radius: 999px;
+                text-decoration: none;
+                font-weight: 900;
+                box-shadow: var(--shadow);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+            .ghost-button:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow2);
+            }
+
+            .micro {
+                margin-top: 14px;
+                font-size: 12px;
+                color: var(--muted);
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+            .section-title {
+                font-size: 38px;
+                text-align: center;
+                margin-bottom: 12px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .section-subtitle {
+                text-align: center;
+                color: var(--muted);
+                max-width: 900px;
+                margin: 0 auto 36px;
+                font-size: 15px;
+            }
+
+            .grid {
+                display: grid;
+                gap: 22px;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                padding: 28px;
+                box-shadow: var(--shadow);
+                position: relative;
+                overflow: hidden;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s,
+                    border-color 0.2s;
+            }
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow2);
+                border-color: rgba(255, 69, 0, 0.28);
+            }
+            .card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 18px;
+                padding: 1px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 69, 0, 0.55),
+                    rgba(255, 140, 0, 0.25)
+                );
+                -webkit-mask:
+                    linear-gradient(#000 0 0) content-box,
+                    linear-gradient(#000 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+                opacity: 0.65;
+            }
+
+            .card h3 {
+                color: var(--accent1);
+                margin-bottom: 8px;
+                font-size: 18px;
+            }
+            .card p {
+                color: var(--muted);
+                font-size: 14px;
+            }
+
+            .bullets {
+                list-style: none;
+                margin-top: 14px;
+            }
+            .bullets li {
+                position: relative;
+                padding: 8px 0 8px 24px;
+                border-bottom: 1px solid var(--border);
+                color: var(--muted);
+                font-size: 14px;
+            }
+            .bullets li:last-child {
+                border-bottom: none;
+            }
+            .bullets li::before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--accent2);
+                font-weight: 900;
+            }
+
+            .band {
+                background: var(--accentSoft);
+            }
+
+            .contact-form {
+                max-width: 720px;
+                margin: 0 auto;
+                background: var(--surface);
+                padding: 34px;
+                border-radius: 20px;
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .form-group {
+                margin-bottom: 16px;
+            }
+            label {
+                font-size: 13px;
+                color: var(--accent2);
+                font-weight: 900;
+                display: block;
+                margin-bottom: 6px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 14px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: var(--surface-solid);
+                color: var(--text);
+                font-family: inherit;
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+            }
+            [data-theme="dark"] input,
+            [data-theme="dark"] select,
+            [data-theme="dark"] textarea {
+                background: rgba(0, 0, 0, 0.25);
+            }
+            input:focus,
+            select:focus,
+            textarea:focus {
+                outline: none;
+                border-color: rgba(255, 69, 0, 0.55);
+                box-shadow: 0 0 0 4px var(--focus);
+            }
+            textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            .submit-button {
+                width: 100%;
+                padding: 16px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent1),
+                    var(--accent2)
+                );
+                color: #fff;
+                border: none;
+                border-radius: 999px;
+                font-weight: 900;
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+                box-shadow: 0 12px 30px rgba(255, 69, 0, 0.18);
+            }
+            .submit-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 18px 42px rgba(255, 69, 0, 0.24);
+            }
+
+            .contact-links {
+                margin-top: 18px;
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .contact-links a {
+                color: var(--accent1);
+                text-decoration: none;
+                font-weight: 900;
+                padding: 10px 14px;
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                background: var(--surface);
+                box-shadow: var(--shadow);
+                font-size: 13px;
+            }
+            .contact-links a:hover {
+                border-color: rgba(255, 69, 0, 0.28);
+            }
+
+            footer {
+                background: var(--surface);
+                border-top: 1px solid var(--border);
+                padding: 24px 0;
+                text-align: center;
+                color: var(--muted);
+                font-size: 13px;
+                backdrop-filter: blur(10px);
+            }
+
+            @media (max-width: 900px) {
+                .grid-3,
+                .grid-2 {
+                    grid-template-columns: 1fr;
+                }
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+                .hero h1 {
+                    font-size: 40px;
+                }
+                .hero p {
+                    font-size: 16px;
+                }
+                nav .container {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+                nav ul {
+                    justify-content: center;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+            <div class="container">
+                <a href="#home" class="logo">Hewing AI</a>
+                <ul>
+                    <li><a href="#offer">Offer</a></li>
+                    <li><a href="#proof">Why this works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="#apply">Contact</a></li>
+                </ul>
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Toggle theme"
+                >
+                    <span class="theme-dot" aria-hidden="true"></span>
+                    <span id="themeLabel">Light</span>
+                </button>
+            </div>
+        </nav>
+
+        <section class="hero" id="home">
+            <div class="container">
+                <span class="pill">Choose yourself, choose Hewing AI</span>
+
+                <h1>Stop Missing Leads.<br />Automate Replies & Follow-Ups.</h1>
+
+                <p>
+                    Slow replies quietly drain revenue. We build systems that
+                    respond instantly, qualify leads, and protect your sales
+                    pipeline.
+                </p>
+
+                <div class="cta-row">
+                    <a href="#apply" class="cta-button">Book a Pricing Chat</a>
+                    <a href="pricing.html" class="ghost-button"
+                        >See how pricing works →</a
+                    >
+                </div>
+
+                <p class="micro">
+                    Set up quickly. Hands over cleanly. Works with how you
+                    already run things.
+                </p>
+            </div>
+        </section>
+
+        <section id="offer">
+            <div class="container">
+                <h2 class="section-title">What You Get</h2>
+                <p class="section-subtitle">
+                    This isn’t “marketing”. It’s an operating system for
+                    handling enquiries properly.
+                </p>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Instant Response</h3>
+                        <p>
+                            Reply speed becomes immediate — even when you’re
+                            busy or closed.
+                        </p>
+                        <ul class="bullets">
+                            <li>FAQs answered</li>
+                            <li>Details collected</li>
+                            <li>Cleaner conversations</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Lead Qualification</h3>
+                        <p>
+                            Serious enquiries get prioritised. Time-wasters get
+                            filtered.
+                        </p>
+                        <ul class="bullets">
+                            <li>Basic fit checks</li>
+                            <li>Intent signals</li>
+                            <li>Clear handover</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Follow-Up Built In</h3>
+                        <p>No more “forgot to reply”. No more cold leads.</p>
+                        <ul class="bullets">
+                            <li>Smart follow-ups</li>
+                            <li>Human tone</li>
+                            <li>Stops drop-offs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof" class="band">
+            <div class="container">
+                <h2 class="section-title">Why This Works</h2>
+                <p class="section-subtitle">
+                    Most businesses don’t need more leads. They need to stop
+                    wasting the ones they already get.
+                </p>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Speed wins</h3>
+                        <p>
+                            People message multiple businesses. The one that
+                            replies first usually gets the conversation.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Consistency wins</h3>
+                        <p>
+                            Even strong offers lose sales if follow-up is messy
+                            or forgotten.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Structure wins</h3>
+                        <p>
+                            When you collect the right details upfront, you stop
+                            wasting time on back-and-forth.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Handover wins</h3>
+                        <p>
+                            The goal isn’t replacing humans — it’s handing you
+                            better conversations, faster.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apply">
+            <div class="container">
+                <h2 class="section-title">Pricing Chat</h2>
+                <p class="section-subtitle">
+                    Tell me what you sell and where enquiries come from. I’ll
+                    reply with what makes sense and what doesn’t.
+                </p>
+
+                <form
+                    class="contact-form"
+                    action="https://formspree.io/f/mvgeqakn"
+                    method="POST"
+                >
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input
+                                id="name"
+                                name="name"
+                                required
+                                placeholder="Your name"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                required
+                                placeholder="you@business.com"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="business">Business type *</label>
+                            <input
+                                id="business"
+                                name="business"
+                                required
+                                placeholder="What do you do?"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="lead_source"
+                                >Where do enquiries come from? *</label
+                            >
+                            <select
+                                id="lead_source"
+                                name="lead_source"
+                                required
+                            >
+                                <option value="">Select</option>
+                                <option value="website">Website</option>
+                                <option value="instagram">
+                                    Instagram / DMs
+                                </option>
+                                <option value="google">Google / Maps</option>
+                                <option value="ads">Paid ads</option>
+                                <option value="referrals">Referrals</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            required
+                            placeholder="What’s your biggest issue right now? Slow replies, missed leads, follow-ups, etc."
+                        ></textarea>
+                    </div>
+
+                    <button class="submit-button" type="submit">Send</button>
+                </form>
+
+                <div class="contact-links">
+                    <a href="mailto:snhewing@hewingai.com"
+                        >snhewing@hewingai.com</a
+                    >
+                    <a
+                        href="https://tiktok.com/@hewing.ai"
+                        target="_blank"
+                        rel="noopener"
+                        >TikTok</a
+                    >
+                    <a
+                        href="https://instagram.com/hewing.ai"
+                        target="_blank"
+                        rel="noopener"
+                        >Instagram</a
+                    >
+                    <a
+                        href="https://www.linkedin.com/in/hewingai"
+                        target="_blank"
+                        rel="noopener"
+                        >LinkedIn</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2026 Hewing AI. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Smooth scrolling for in-page links
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    const href = a.getAttribute("href");
+                    const target = document.querySelector(href);
+                    if (!target) return;
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                });
+            });
+
+            // Theme toggle
+            (function () {
+                const root = document.documentElement;
+                const btn = document.getElementById("themeToggle");
+                const label = document.getElementById("themeLabel");
+
+                function apply(theme) {
+                    if (theme === "dark") {
+                        root.setAttribute("data-theme", "dark");
+                        label.textContent = "Dark";
+                    } else {
+                        root.removeAttribute("data-theme");
+                        label.textContent = "Light";
+                    }
+                    localStorage.setItem("theme", theme);
+                }
+
+                const saved = localStorage.getItem("theme");
+                const prefersDark =
+                    window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches;
+                apply(saved || (prefersDark ? "dark" : "light"));
+
+                btn.addEventListener("click", () => {
+                    apply(
+                        root.getAttribute("data-theme") === "dark"
+                            ? "light"
+                            : "dark",
+                    );
+                });
+            })();
+        </script>
+    </body>
+</html>
