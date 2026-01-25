@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description" content="Hewing AI pricing is based on your workflow and enquiry volume. Start with a quick pricing chat." />
+  <title>Hewing AI | Pricing</title>
+
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.setAttribute("data-theme","dark");
+      }
+    } catch(e){}
+  </script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root{
+      --bg:#f7f7fb;
+      --bg2:#ffffff;
+      --surface:rgba(255,255,255,0.78);
+      --surface-solid:#ffffff;
+      --text:#121316;
+      --muted:#5b616a;
+      --border:rgba(16,24,40,0.12);
+      --accent1:#ff4500;
+      --accent2:#ff8c00;
+      --accentSoft:rgba(255,69,0,0.08);
+      --shadow:0 10px 35px rgba(16,24,40,0.10);
+      --shadow2:0 20px 60px rgba(16,24,40,0.12);
+      --focus:rgba(255,69,0,0.25);
+    }
+
+    [data-theme="dark"]{
+      --bg:#101013;
+      --bg2:#141418;
+      --surface:rgba(20,20,20,0.76);
+      --surface-solid:#141418;
+      --text:#ffffff;
+      --muted:#c9c9d2;
+      --border:rgba(255,69,0,0.22);
+      --accentSoft:rgba(255,69,0,0.06);
+      --shadow:0 10px 35px rgba(0,0,0,0.35);
+      --shadow2:0 20px 60px rgba(0,0,0,0.45);
+      --focus:rgba(255,69,0,0.30);
+    }
+
+    body{
+      font-family:"JetBrains Mono","Fira Code","Consolas",monospace;
+      background:
+        radial-gradient(1200px 800px at 20% 0%, rgba(255,140,0,0.18), transparent 60%),
+        radial-gradient(900px 700px at 90% 10%, rgba(255,69,0,0.14), transparent 55%),
+        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 70%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .container{ max-width:980px; margin:0 auto; padding:0 20px; }
+
+    nav{
+      background:var(--surface);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:1000;
+    }
+    nav .container{
+      display:flex; justify-content:space-between; align-items:center; padding:14px 0; gap:12px;
+    }
+    .logo{
+      font-size:24px; font-weight:900;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .theme-toggle{
+      border:1px solid var(--border);
+      background:var(--surface);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:12px;
+      display:flex; gap:8px; align-items:center;
+      box-shadow:var(--shadow);
+    }
+    .theme-dot{
+      width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    }
+
+    .hero{ padding:80px 0 40px; text-align:center; }
+    .hero h1{
+      font-size:48px; margin-bottom:12px; letter-spacing:-0.6px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .hero p{
+      color:var(--muted);
+      max-width:820px;
+      margin:0 auto 22px;
+      font-size:16px;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin:18px 0;
+    }
+    .card h2{ color:var(--accent1); font-size:18px; margin-bottom:10px; }
+    .card p{ color:var(--muted); font-size:14px; }
+
+    .bullets{ list-style:none; margin-top:14px; }
+    .bullets li{
+      position:relative;
+      padding:8px 0 8px 24px;
+      border-bottom:1px solid var(--border);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .bullets li:last-child{ border-bottom:none; }
+    .bullets li::before{
+      content:"✓";
+      position:absolute; left:0;
+      color:var(--accent2);
+      font-weight:900;
+    }
+
+    .cta{
+      display:inline-block;
+      padding:16px 34px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      font-weight:900;
+      box-shadow:0 12px 30px rgba(255,69,0,0.22);
+    }
+
+    .contact-form{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    label{ font-size:13px; color:var(--accent2); font-weight:900; display:block; margin-bottom:6px; }
+    input, select, textarea{
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--surface-solid);
+      color:var(--text);
+      font-family:inherit;
+      margin-bottom:14px;
+    }
+    [data-theme="dark"] input,
+    [data-theme="dark"] select,
+    [data-theme="dark"] textarea{ background:rgba(0,0,0,0.25); }
+
+    textarea{ min-height:120px; resize:vertical; }
+
+    button{
+      width:100%;
+      padding:16px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      color:#fff;
+      border:none;
+      border-radius:999px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .links{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .links a{
+      color:var(--accent1);
+      text-decoration:none;
+      font-weight:900;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--surface);
+      box-shadow:var(--shadow);
+      font-size:13px;
+    }
+
+    footer{
+      margin-top:28px;
+      padding:24px 0;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      background:var(--surface);
+      backdrop-filter:blur(10px);
+      font-size:13px;
+    }
+
+    @media(max-width:900px){
+      .hero h1{ font-size:36px; }
+      nav .container{ flex-direction:column; align-items:stretch; }
+    }
+  </style>
+</head>
+
+<body>
+<nav>
+  <div class="container">
+    <a href="demo3.html#home" class="logo">Hewing AI</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+      <span class="theme-dot" aria-hidden="true"></span>
+      <span id="themeLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>Pricing</h1>
+    <p>
+      I don’t publish pricing because setup depends on your enquiry volume,
+      where leads come from, and what you need automated.
+      If it’s simple, I’ll say it’s simple. If it’s not worth it, I’ll say that too.
+    </p>
+    <a class="cta" href="#form">Start Pricing Chat</a>
+  </div>
+</section>
+
+<div class="container">
+  <div class="card">
+    <h2>What affects price</h2>
+    <p>These are the things that decide the setup and ongoing level of work:</p>
+    <ul class="bullets">
+      <li>How many enquiries you get per week</li>
+      <li>Where they come from (site, Instagram, email, Google)</li>
+      <li>How many questions you need handled</li>
+      <li>How complex the handover needs to be</li>
+      <li>Whether you need integrations (forms, CRM, calendars)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>What you’ll get on the pricing chat</h2>
+    <ul class="bullets">
+      <li>A clear recommendation (do this / don’t do this)</li>
+      <li>What I would automate first (highest impact)</li>
+      <li>Rough scope of setup + what ongoing looks like</li>
+      <li>Next steps if you want to move forward</li>
+    </ul>
+  </div>
+
+  <div class="card" id="form">
+    <h2 style="margin-bottom:12px;">Start the pricing chat</h2>
+    <form class="contact-form" action="https://formspree.io/f/mvgeqakn" method="POST">
+      <label for="name">Full Name *</label>
+      <input id="name" name="name" required placeholder="Your name" />
+
+      <label for="email">Email *</label>
+      <input id="email" type="email" name="email" required placeholder="you@business.com" />
+
+      <label for="business">Business type *</label>
+      <input id="business" name="business" required placeholder="What do you do?" />
+
+      <label for="lead_source">Where do enquiries come from? *</label>
+      <select id="lead_source" name="lead_source" required>
+        <option value="">Select</option>
+        <option value="website">Website</option>
+        <option value="instagram">Instagram / DMs</option>
+        <option value="google">Google / Maps</option>
+        <option value="ads">Paid ads</option>
+        <option value="referrals">Referrals</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required placeholder="How many enquiries per week? What’s the biggest issue right now?"></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+
+    <div class="links">
+      <a href="mailto:snhewing@hewingai.com">snhewing@hewingai.com</a>
+      <a href="https://tiktok.com/@hewing.ai" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://instagram.com/hewing.ai" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/hewingai" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Hewing AI. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const root = document.documentElement;
+    const btn = document.getElementById("themeToggle");
+    const label = document.getElementById("themeLabel");
+
+    function apply(theme){
+      if (theme === "dark"){
+        root.setAttribute("data-theme","dark");
+        label.textContent = "Dark";
+      } else {
+        root.removeAttribute("data-theme");
+        label.textContent = "Light";
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    apply(saved || (prefersDark ? "dark" : "light"));
+
+    btn.addEventListener("click", () => {
+      apply(root.getAttribute("data-theme")==="dark" ? "light" : "dark");
+    });
+  })();
+</script>
+</body>
+</html>
